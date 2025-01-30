@@ -4,7 +4,7 @@ import sys
 from garmin_fit_sdk import Decoder, Stream
 
 stream: Stream = Stream.from_file(
-    "test-data/Zwift_Chasing_the_Sun_in_Makuri_Islands.fit"
+    "/home/pat/Projects/python/fit-tracker/test-data/Zwift_Chasing_the_Sun_in_Makuri_Islands.fit"
 )
 decoder = Decoder(stream)
 messages, errors = decoder.read()
