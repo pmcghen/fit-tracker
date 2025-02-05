@@ -1,3 +1,3 @@
-# fit-tracker
+# fit-tracker ⛰️
 
-Import `fit` files to keep track of your workouts from the command line. It's like Strava without the Instagram.
+Fit Tracker is an open source alternative to Strava. We're here to help you focus on your fitness goals without subjecting you to mandatory, half baked AI features.
