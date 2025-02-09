@@ -1,2 +1,5 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h1>Welcome to Fit Tracker</h1>
+<p>
+	Fit Tracker is an open source alternative to Strava. We're here to help you focus on your fitness
+	goals without subjecting you to mandatory, half baked AI features.
+</p>
