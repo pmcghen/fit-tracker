@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 
@@ -21,3 +21,7 @@ def login_view(request) -> HttpResponse:
 
 def register(request) -> HttpResponse:
     return HttpResponse(render(request, "users/register.html"))
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("users:index"))
