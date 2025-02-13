@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{% url 'users:login' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Log in</legend>
+        <ul>
+            <li>
+                <label for="email">Email</label>
+                <input id="email" name="email" required>
+            </li>
+            <li>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </li>
+        </ul>
+    </fieldset>
+    <button type="submit">Log in</button>
+</form>
+<p>
+    No account <a href="{% url 'users:register' %}">Register</a> now!
+</p>
+{% endblock content %}
