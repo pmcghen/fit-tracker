@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form>
+    <fieldset>
+        <legend>Upload a file</legend>
+        <p>Please note that only FIT files for cycling, running, hiking, and walking are supported at this time.</p>
+        <ul>
+            <li>
+                <label for="title">Activity title</label>
+                <input id="title" name="title">
+            </li>
+            <li>
+                <label for="description">Activity description</label>
+                <textarea id="description" name="description"></textarea>
+            </li>
+            <li>
+                <label for="fitFile">FIT file</label>
+                <input type="file" id="fitFile" name="fitFile">
+            </li>
+        </ul>
+    </fieldset>
+    <button type="submit">Upload activity</button>
+</form>
+{% endblock content %}
