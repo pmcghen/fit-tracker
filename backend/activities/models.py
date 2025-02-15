@@ -8,6 +8,8 @@ class Activity(models.Model):
 
     id = models.CharField(max_length=255)
     user = models.IntegerField()
+    title = models.CharField(max_length=255)
+    description = models.TextField()
 
     sport = models.CharField(max_length=255)
     sub_sport = models.CharField(max_length=255)
