@@ -22,5 +22,4 @@ urlpatterns = [
     path("", include("users.urls")),
     path("dashboard/", include("dashboard.urls")),
     path("aid-station/", admin.site.urls),
-    path("upload/", include("upload.urls", namespace="upload")),
 ]

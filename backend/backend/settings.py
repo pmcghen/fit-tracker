@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "users.apps.UsersConfig",
     "dashboard.apps.DashboardConfig",
-    "upload.apps.UploadConfig",
 ]
 
 MIDDLEWARE = [
