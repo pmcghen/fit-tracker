@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 
@@ -6,7 +7,7 @@ class Activity(models.Model):
     An activity is created from reading the FIT file provided by the upload form.
     """
 
-    id = models.CharField(max_length=255)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.IntegerField()
     title = models.CharField(max_length=255)
     description = models.TextField()
