@@ -47,6 +47,9 @@ class Activity(models.Model):
 
     total_calories = models.IntegerField()
 
-    file = models.FileField()
+    file = models.FileField(upload_to="fit")
     uploaded_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.description}, uploaded by {self.user} at {self.uploaded_on}"
