@@ -1,4 +1,8 @@
 .venv
 .env
+.idea
+
 test-data
+backend/media
+
 __pycache__
