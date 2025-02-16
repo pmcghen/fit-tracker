@@ -7,48 +7,57 @@ class Activity(models.Model):
     An activity is created from reading the FIT file provided by the upload form.
     """
 
+    class Meta:
+        verbose_name_plural = "Activities"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.IntegerField()
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+    user = models.ForeignKey(to="users.user", on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, null=True)
+    description = models.TextField(null=True)
 
-    sport = models.CharField(max_length=255)
-    sub_sport = models.CharField(max_length=255)
+    sport = models.CharField(max_length=255, null=True)
+    sub_sport = models.CharField(max_length=255, null=True)
 
-    timestamp = models.DateTimeField()
-    start_time = models.DateTimeField()
-    total_elapsed_time = models.FloatField()
-    total_moving_time = models.FloatField()
+    timestamp = models.DateTimeField(null=True)
+    start_time = models.DateTimeField(null=True)
+    total_elapsed_time = models.FloatField(null=True)
+    total_moving_time = models.FloatField(null=True)
 
-    avg_heart_rate = models.IntegerField()
-    min_heart_rate = models.IntegerField()
-    max_heart_rate = models.IntegerField()
+    avg_heart_rate = models.IntegerField(null=True)
+    min_heart_rate = models.IntegerField(null=True)
+    max_heart_rate = models.IntegerField(null=True)
 
-    avg_cadence = models.IntegerField()
-    avg_running_cadence = models.IntegerField()
-    max_running_cadence = models.IntegerField()
-    max_cadence = models.IntegerField()
-    avg_step_length = models.FloatField()
+    avg_cadence = models.IntegerField(null=True)
+    avg_running_cadence = models.IntegerField(null=True)
+    max_running_cadence = models.IntegerField(null=True)
+    max_cadence = models.IntegerField(null=True)
+    avg_step_length = models.FloatField(null=True)
 
-    avg_temperature = models.IntegerField()
-    max_temperature = models.IntegerField()
+    avg_temperature = models.IntegerField(null=True)
+    max_temperature = models.IntegerField(null=True)
 
-    manufacturer = models.CharField(max_length=255)
-    product_name = models.CharField(max_length=255)
+    manufacturer = models.CharField(max_length=255, null=True)
+    product_name = models.CharField(max_length=255, null=True)
 
-    avg_power = models.IntegerField()
-    max_power = models.IntegerField()
+    avg_power = models.IntegerField(null=True)
+    max_power = models.IntegerField(null=True)
 
-    avg_speed = models.FloatField()
-    max_speed = models.FloatField()
+    avg_speed = models.FloatField(null=True)
+    max_speed = models.FloatField(null=True)
 
-    total_ascent = models.IntegerField()
-    total_descent = models.IntegerField()
-    total_distance = models.FloatField()
+    total_ascent = models.IntegerField(null=True)
+    total_descent = models.IntegerField(null=True)
+    total_distance = models.FloatField(null=True)
 
-    total_calories = models.IntegerField()
+    total_calories = models.IntegerField(null=True)
 
-    file = models.FileField(upload_to="fit")
+    max_altitude = models.FloatField(null=True)
+    max_neg_grade = models.FloatField(null=True)
+    max_pos_grade = models.FloatField(null=True)
+
+    num_laps = models.IntegerField(null=True)
+
+    file = models.FileField(upload_to="fit", null=True)
     uploaded_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
 
