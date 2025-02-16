@@ -26,6 +26,7 @@ class Activity(models.Model):
 
     avg_cadence = models.IntegerField()
     avg_running_cadence = models.IntegerField()
+    max_running_cadence = models.IntegerField()
     max_cadence = models.IntegerField()
     avg_step_length = models.FloatField()
 
