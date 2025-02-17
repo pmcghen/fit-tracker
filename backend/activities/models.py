@@ -14,6 +14,7 @@ class Activity(models.Model):
     user = models.ForeignKey(to="users.user", on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True)
+    is_private = models.BooleanField(default=False)
 
     sport = models.CharField(max_length=255, null=True)
     sub_sport = models.CharField(max_length=255, null=True)
