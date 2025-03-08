@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:17.2-alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - "./backend/backend/.env"
+
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    ports:
+      - "5173:5173"
+
+    volumes:
+      - ./frontend:/app/frontend
+
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+
+    env_file:
+      - "./backend/backend/.env"
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ./backend:/app/backend
+
+    depends_on:
+      - db
