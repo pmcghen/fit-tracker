@@ -1,0 +1,150 @@
+@import './colors.css';
+
+:root {
+	--font-family: 'Hanken Grotesk', sans-serif;
+	/*
+    Font Size Scale Variables
+
+    These custom properties define a modular scale for font sizes.
+    Use these variables to ensure consistent typography sizing across the application.
+
+    --scale-000: Extra-extra-small font size (0.75rem)
+    --scale-00: Extra-small font size (0.875rem)
+    --scale-0: Base font size (1rem)
+    --scale-1: Small font size (1.125rem)
+    --scale-2: Medium font size (1.25rem)
+    --scale-3: Large font size (1.5rem)
+    --scale-4: Extra-large font size (1.875rem)
+    --scale-5: 2x large font size (2.25rem)
+    --scale-6: 3x large font size (3rem)
+    --scale-7: 4x large font size (3.75rem)
+    --scale-8: 5x large font size (4.5rem)
+    --scale-9: 6x large font size (6rem)
+    --scale-10: 8x large font size (8rem)
+  */
+	--scale-0: 1rem;
+	--scale-1: 1.125rem;
+	--scale-2: 1.25rem;
+	--scale-3: 1.5rem;
+	--scale-4: 1.875rem;
+	--scale-5: 2.25rem;
+	--scale-6: 3rem;
+	--scale-7: 3.75rem;
+	--scale-8: 4.5rem;
+	--scale-9: 6rem;
+	--scale-10: 8rem;
+	--scale-000: 0.75rem;
+	--scale-00: 0.875rem;
+
+	/*
+    Sizing scale variables (in rem units)
+    -------------------------------------
+    These custom properties define a consistent spacing and sizing scale for the application.
+    Use these variables for margin, padding, width, height, gap, etc., to ensure design consistency.
+
+    Example usage:
+      padding: var(--size-4); // 1rem
+
+    Scale:
+      --size-1:   0.25rem   // 4px
+      --size-2:   0.5rem    // 8px
+      --size-3:   0.75rem   // 12px
+      --size-4:   1rem      // 16px
+      --size-5:   1.25rem   // 20px
+      --size-6:   1.5rem    // 24px
+      --size-7:   1.75rem   // 28px
+      --size-8:   2rem      // 32px
+      --size-9:   2.25rem   // 36px
+      --size-10:  2.5rem    // 40px
+      --size-11:  2.75rem   // 44px
+      --size-12:  3rem      // 48px
+      --size-14:  3.5rem    // 56px
+      --size-16:  4rem      // 64px
+      --size-20:  5rem      // 80px
+      --size-24:  6rem      // 96px
+      --size-28:  7rem      // 112px
+      --size-32:  8rem      // 128px
+      --size-36:  9rem      // 144px
+      --size-40:  10rem     // 160px
+      --size-44:  11rem     // 176px
+      --size-48:  12rem     // 192px
+      --size-52:  13rem     // 208px
+      --size-56:  14rem     // 224px
+      --size-60:  15rem     // 240px
+      --size-64:  16rem     // 256px
+      --size-72:  18rem     // 288px
+      --size-80:  20rem     // 320px
+      --size-96:  24rem     // 384px
+  */
+	--size-1: 0.25rem;
+	--size-2: 0.5rem;
+	--size-3: 0.75rem;
+	--size-4: 1rem;
+	--size-5: 1.25rem;
+	--size-6: 1.5rem;
+	--size-7: 1.75rem;
+	--size-8: 2rem;
+	--size-9: 2.25rem;
+	--size-10: 2.5rem;
+	--size-11: 2.75rem;
+	--size-12: 3rem;
+	--size-14: 3.5rem;
+	--size-16: 4rem;
+	--size-20: 5rem;
+	--size-24: 6rem;
+	--size-28: 7rem;
+	--size-32: 8rem;
+	--size-36: 9rem;
+	--size-40: 10rem;
+	--size-44: 11rem;
+	--size-48: 12rem;
+	--size-52: 13rem;
+	--size-56: 14rem;
+	--size-60: 15rem;
+	--size-64: 16rem;
+	--size-72: 18rem;
+	--size-80: 20rem;
+	--size-96: 24rem;
+
+	--shadow-xs: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	--shadow-sm: 0 4px 6px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+	--shadow-md: 0 12px 16px -4px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	--shadow-lg: 0 20px 24px -4px rgba(0, 0, 0, 0.1), 0 8px 8px -4px rgba(0, 0, 0, 0.04);
+	--shadow-xl: 0 24px 48px -12px rgba(0, 0, 0, 0.25);
+	--ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	--ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+	--ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+	--ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	--ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+	--ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+	--ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+	--ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+	--ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+	--ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+	--ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+	--ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+	--ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	--ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	--ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	font-family: var(--font-family);
+	color: var(--color-grey-700);
+}
+
+form {
+	display: contents;
+}

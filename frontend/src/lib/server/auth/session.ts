@@ -1,8 +1,9 @@
+import { db } from '$db';
+import { sessionTable, userTable, type Session, type User } from '$db/schema';
 import { sha256 } from '@oslojs/crypto/sha2';
 import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from '@oslojs/encoding';
+import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
-import { db } from '../../../db';
-import { sessionTable, userTable, type Session, type User } from '../../../db/schema';
 
 const THIRTY_DAYS = 1000 * 60 * 60 * 24 * 30;
 const FIFTEEN_DAYS = 1000 * 60 * 60 * 24 * 15;
@@ -32,7 +33,10 @@ export async function createToken(token: string, userId: number): Promise<Sessio
 export async function validateSessionToken(token: string): Promise<SessionValidationResult> {
 	const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
 	const result = await db
-		.select({ user: userTable, session: sessionTable })
+		.select({
+			user: { id: userTable.id, email: userTable.email, name: userTable.name },
+			session: sessionTable
+		})
 		.from(sessionTable)
 		.innerJoin(userTable, eq(sessionTable.userId, userTable.id))
 		.where(eq(sessionTable.id, sessionId));
@@ -65,7 +69,25 @@ export async function validateSessionToken(token: string): Promise<SessionValida
 
 	return { session, user };
 }
+export function setSessionTokenCookie(event: RequestEvent, token: string, expiresAt: Date): void {
+	event.cookies.set('session', token, {
+		httpOnly: true,
+		path: '/',
+		secure: import.meta.env.PROD,
+		sameSite: 'lax',
+		expires: expiresAt
+	});
+}
 
+export function deleteSessionTokenCookie(event: RequestEvent): void {
+	event.cookies.set('session', '', {
+		httpOnly: true,
+		path: '/',
+		secure: import.meta.env.PROD,
+		sameSite: 'lax',
+		maxAge: 0
+	});
+}
 export async function invalidateSession(sessionId: string): Promise<void> {
 	await db.delete(sessionTable).where(eq(sessionTable.id, sessionId));
 }
@@ -75,5 +97,5 @@ export async function invalidateAllSessions(userId: number): Promise<void> {
 }
 
 export type SessionValidationResult =
-	| { session: Session; user: User }
+	| { session: Session; user: Partial<User> }
 	| { session: null; user: null };

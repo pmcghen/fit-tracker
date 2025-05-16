@@ -1,9 +1,14 @@
+import { db } from '$db';
+import { userTable, type User } from '$db/schema';
 import { eq } from 'drizzle-orm';
-import { db } from '../../../db';
-import { userTable, type User } from '../../../db/schema';
 import { hashPassword } from './password';
 
-export async function createUser(email: string, password: string): Promise<User> {
+export async function createUser(userToCreate: {
+	email: string;
+	password: string;
+	name: string;
+}): Promise<User> {
+	const { email, password, name } = userToCreate;
 	const hashedPassword = await hashPassword(password);
 	let user: User | null = null;
 	try {
@@ -11,7 +16,8 @@ export async function createUser(email: string, password: string): Promise<User>
 			.insert(userTable)
 			.values({
 				email,
-				password_hash: hashedPassword
+				password_hash: hashedPassword,
+				name
 			})
 			.returning();
 
@@ -22,6 +28,16 @@ export async function createUser(email: string, password: string): Promise<User>
 	}
 
 	return user;
+}
+
+export async function getUserPasswordHash(userId: number): Promise<string | null> {
+	const result = await db.select().from(userTable).where(eq(userTable.id, userId)).limit(1);
+
+	if (result.length === 0) {
+		return null;
+	}
+
+	return result[0].password_hash;
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
