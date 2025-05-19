@@ -1,4 +1,6 @@
-import { checkForEmail, createUser, verifyEmailInput } from '$lib';
+import type { User } from '$db/schema.js';
+import { checkForEmail, createUser, createVerifyToken, verifyEmailInput } from '$lib';
+import { sendVerifyEmail } from '$lib/server/email';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 
 export const load = async (event) => {
@@ -60,9 +62,10 @@ export const actions: Actions = {
 			name: name as string,
 			password: password as string
 		};
+		let createdUser: User;
 
 		try {
-			await createUser(user);
+			createdUser = await createUser(user);
 		} catch (error) {
 			console.error('Error creating user:', error);
 			return fail(500, {
@@ -71,6 +74,16 @@ export const actions: Actions = {
 			});
 		}
 		// TODO: send email verification
+		try {
+			const token = await createVerifyToken(createdUser.id);
+			await sendVerifyEmail(user, token);
+		} catch (error) {
+			console.error('Error sending verification email:', error);
+			return fail(500, {
+				success: false,
+				message: 'Internal server error'
+			});
+		}
 
 		return redirect(303, '/auth/login');
 	}

@@ -1,19 +1,19 @@
 {
-  "version": "7",
+  "version": "1",
   "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
       "version": "7",
-      "when": 1747411985338,
-      "tag": "0000_stormy_master_chief",
+      "when": 1747662115443,
+      "tag": "0000_aberrant_charles_xavier",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1747412000675,
-      "tag": "0001_create_user_info_function",
+      "when": 1747662210382,
+      "tag": "0001_living_lizard",
       "breakpoints": true
     }
   ]
