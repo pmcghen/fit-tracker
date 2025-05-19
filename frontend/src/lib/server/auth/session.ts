@@ -34,7 +34,12 @@ export async function validateSessionToken(token: string): Promise<SessionValida
 	const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
 	const result = await db
 		.select({
-			user: { id: userTable.id, email: userTable.email, name: userTable.name },
+			user: {
+				id: userTable.id,
+				email: userTable.email,
+				name: userTable.name,
+				confirmed: userTable.confirmed
+			},
 			session: sessionTable
 		})
 		.from(sessionTable)

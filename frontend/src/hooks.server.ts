@@ -1,5 +1,5 @@
 import { deleteSessionTokenCookie, setSessionTokenCookie, validateSessionToken } from '$lib';
-import type { Handle } from '@sveltejs/kit';
+import { type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
 const authHandle: Handle = async ({ event, resolve }) => {
@@ -20,6 +20,7 @@ const authHandle: Handle = async ({ event, resolve }) => {
 
 	event.locals.session = session;
 	event.locals.user = user;
+
 	return resolve(event);
 };
 

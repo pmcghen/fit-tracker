@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import '../app.css';
+	import '../../app.css';
 
 	const { children, data } = $props();
 	const { user } = $derived(data);
@@ -20,7 +20,7 @@
 		<a href="/auth/login">Log in</a>
 	{/if}
 	{#if user}
-		Welcome {user.name}!
+		Welcome {user.name} - {user.confirmed ? 'Yes' : 'No'}!
 	{/if}
 </header>
 

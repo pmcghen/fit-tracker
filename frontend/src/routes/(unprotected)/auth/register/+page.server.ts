@@ -79,7 +79,7 @@ export const actions: Actions = {
 			await sendVerifyEmail(user, token);
 		} catch (error) {
 			console.error('Error sending verification email:', error);
-			return fail(500, {
+			return fail(400, {
 				success: false,
 				message: 'Internal server error'
 			});

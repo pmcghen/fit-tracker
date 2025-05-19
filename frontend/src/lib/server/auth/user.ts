@@ -49,3 +49,12 @@ export async function getUserByEmail(email: string): Promise<User | null> {
 
 	return result[0];
 }
+
+export async function confirmUserEmail(userId: number): Promise<void> {
+	try {
+		await db.update(userTable).set({ confirmed: true }).where(eq(userTable.id, userId));
+	} catch (error) {
+		console.error('Error confirming user email:', error);
+		throw new Error('Unexpected error occurred while confirming user email');
+	}
+}
