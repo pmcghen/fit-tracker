@@ -1,0 +1,17 @@
+.authentication-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+
+	.actions {
+		display: flex;
+		align-items: center;
+		gap: var(--size-2);
+
+		p {
+			margin: 0;
+		}
+	}
+}

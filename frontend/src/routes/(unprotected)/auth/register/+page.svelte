@@ -1,37 +1,48 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { Button, FormContainer, Input, Message } from '$components';
 
 	const { form } = $props();
 </script>
 
-{#if !form?.success}
-	<p class="error">{form?.message}</p>
-{/if}
-
 <form method="POST" action="/auth/register" use:enhance>
-	<fieldset>
-		<legend>Register for Fit Tracker</legend>
-		<ul>
-			<li>
-				<label for="email">Email:</label>
-				<input type="email" id="email" name="email" required />
-			</li>
-			<li>
-				<label for="name">Name:</label>
-				<input type="text" id="name" name="name" required />
-			</li>
-			<li>
-				<label for="password">Password:</label>
-				<input type="password" id="password" name="password" required />
-			</li>
-			<li>
-				<label for="confirm_password">Confirm Password:</label>
-				<input type="password" id="confirm_password" name="confirm_password" required />
-			</li>
-		</ul>
-	</fieldset>
-	<section>
-		<button id="submit" type="submit">Register</button>
-		<p>Or <a href="/auth/login">log in</a> if you already have an account.</p>
-	</section>
+	<FormContainer legend="Register for Fit Tracker">
+		{#if form}
+			{#if form?.success}
+				<Message type="success">{form?.message}</Message>
+			{:else}
+				<Message type="error">{form?.message}</Message>
+			{/if}
+		{/if}
+		<Input
+			id="email"
+			type="email"
+			name="email"
+			label="Email"
+			placeholder="Enter your email"
+			required
+		/>
+		<Input id="name" type="text" name="name" label="Name" placeholder="Enter your name" required />
+		<Input
+			id="password"
+			type="password"
+			name="password"
+			label="Password"
+			placeholder="Enter your password"
+			required
+		/>
+		<Input
+			id="confirm_password"
+			type="password"
+			name="confirm_password"
+			label="Confirm Password"
+			placeholder="Re-enter your password"
+			required
+		/>
+
+		<section class="actions">
+			<Button type="submit">Register</Button>
+			<p>Or <a href="/auth/login">log in</a> if you already have an account.</p>
+		</section>
+	</FormContainer>
 </form>

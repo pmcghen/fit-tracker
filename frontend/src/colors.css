@@ -241,4 +241,18 @@
 	--color-rose-900: #881337;
 	--color-rose-950: #4c0519;
 	--color-rose: var(--color-rose-500);
+
+	--color-primary-hsl: hsl(191, 82%, 98%);
+	--color-ofn-50: #edfcfe;
+	--color-ofn-100: #d2f6fb;
+	--color-ofn-200: #abebf6;
+	--color-ofn-300: #71dcef;
+	--color-ofn-400: #30c3e0;
+	--color-ofn-500: #15afd1;
+	--color-ofn-600: #1385a7;
+	--color-ofn-700: #176b87;
+	--color-ofn-800: #1b586f;
+	--color-ofn-900: #1b4a5e;
+	--color-ofn-950: #0c2f40;
+	--color-primary: var(--color-ofn-500);
 }

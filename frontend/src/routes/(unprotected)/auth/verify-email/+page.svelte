@@ -1,12 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { Button, FormContainer, Input, Message } from '$components';
 
 	const { form } = $props();
 </script>
-
-{#if form}
-	{form?.message}
-{/if}
 
 <form
 	method="POST"
@@ -25,24 +22,34 @@
 		};
 	}}
 >
-	<fieldset>
-		<legend>Verify Email</legend>
-		<p>
-			Please check your email for a verification code. If you haven't received it, please check your
-			spam folder. If you still can't find it, you can request a new code.
-		</p>
-		<p>
-			<strong>The code will expire in 10 minutes.</strong>
-		</p>
-		<ul>
-			<li>
-				<label for="code">Code:</label>
-				<input id="code" name="code" type="code" />
-			</li>
-		</ul>
-		<section>
-			<button id="submit" type="submit">Verify</button>
-			<button formaction="?/resend">Resend Code</button>
-		</section>
-	</fieldset>
+	<FormContainer legend="Verify Email">
+		{#if form}
+			{#if form?.success}
+				<Message type="success">{form?.message}</Message>
+			{:else}
+				<Message type="error">{form?.message}</Message>
+			{/if}
+		{/if}
+		<div>
+			<p>
+				Please check your email for a verification code. If you haven't received it, please check
+				your spam folder. If you still can't find it, you can request a new code.
+			</p>
+			<p>
+				<strong>The code will expire in 10 minutes.</strong>
+			</p>
+		</div>
+		<Input
+			id="code"
+			type="text"
+			name="code"
+			label="Code"
+			placeholder="Enter the verification code"
+			required
+		/>
+		<section class="actions">
+			<Button type="submit">Verify</Button>
+			<Button type="submit" formaction="?/resend">Resend Code</Button>
+		</section></FormContainer
+	>
 </form>
