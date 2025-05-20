@@ -1,14 +1,12 @@
-<svelte:head>
-	<title>Fit Tracker</title>
-</svelte:head>
+<script lang="ts">
+	import { Header } from '$components';
 
-<header>
-	<a href="/">Home</a>
-	<a href="/login">Log in</a>
-</header>
+	const { children, data } = $props();
+</script>
 
+<Header user={data.user} />
 <main>
-	<slot />
+	{@render children()}
 </main>
 
 <footer>
