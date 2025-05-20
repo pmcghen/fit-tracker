@@ -5,7 +5,7 @@
 </script>
 
 {#if data.user}
-	<Dashboard />
+	<Dashboard user={data.user} />
 {:else}
 	<h1>Welcome to Fit Tracker</h1>
 	<p>
