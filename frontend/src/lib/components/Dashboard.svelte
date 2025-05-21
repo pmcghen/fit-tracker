@@ -1,12 +1,16 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { User } from '$db/schema';
 	import { DashboardIcon, LockerIcon, SettingsIcon } from '$lib/assets/icons';
+	import type { Snippet } from 'svelte';
 
 	type DashboardProps = {
 		user: Partial<User>;
+		children: Snippet;
 	};
 
-	const { user }: DashboardProps = $props();
+	const { user, children }: DashboardProps = $props();
+	const p = $page.url.pathname;
 </script>
 
 <div class="container container-xl">
@@ -19,21 +23,24 @@
 				<h2>{user?.name ?? '?'}</h2>
 			</div>
 			<nav class="dashboardContainer__nav">
-				<a href="/dashboard" class="active">
+				<a href="/" class:active={p === '/'}>
 					<DashboardIcon class="dashboardIcon" />
 					<span>Dashboard</span>
 				</a>
-				<a href="/dashboard/activities">
+				<a href="/gear" class:active={p === '/gear'}>
 					<LockerIcon class="lockerIcon" />
 					<span>Gear Room</span>
 				</a>
-				<a href="/dashboard/activities/new">
+				<a href="/settings" class:active={p === '/settings'}>
 					<SettingsIcon class="settingsIcon" />
 					<span>Settings</span>
 				</a>
 			</nav>
 		</aside>
-		<div class="dashboardContainer__content"></div>
+		<div class="dashboardContainer__content">
+			<!-- <DateSelector /> -->
+			{@render children()}
+		</div>
 	</div>
 </div>
 
@@ -42,11 +49,10 @@
 		display: flex;
 		width: 100%;
 		gap: var(--size-5);
+		align-items: flex-start;
 
 		& .dashboardContainer__content {
 			flex: 1;
-			background-color: var(--color-red-200);
-			padding: var(--size-5);
 		}
 		aside {
 			width: 350px;
